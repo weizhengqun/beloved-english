@@ -71,7 +71,6 @@ async function insert_objs(objs) {
         let records = await db.collection('lessons').find().toArray();
         console.log(util.inspect(records, false, null, true));
         connect.close();
-//        db.close();
     } catch (e) {
         console.error(e);
     }
