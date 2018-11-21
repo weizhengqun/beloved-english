@@ -55,17 +55,17 @@ set ruler
 set nocompatible
 
 "允许折叠
-set foldenable
+"set foldenable
 """""""""""""""""设置折叠"""""""""""""""""""""
 "
 "根据语法折叠
-set fdm=syntax
+"set fdm=syntax
 
 "手动折叠
 "set fdm=manual
 
 "设置键盘映射，通过空格设置折叠
-nnoremap <space> @=((foldclosed(line('.')<0)?'zc':'zo'))<CR>
+"nnoremap <space> @=((foldclosed(line('.')<0)?'zc':'zo'))<CR>
 """"""""""""""""""""""""""""""""""""""""""""""
 "不要闪烁
 set novisualbell
