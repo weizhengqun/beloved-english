@@ -39,7 +39,7 @@ Host github
 ```
 然后就可以直接输入ssh tencent就可以以ubuntu用户免密码登陆134.175.139.124主机，私钥文件是～/.ssh/id_rsa.tencent，远程主机sshd监听端口是1688。上面例子配置了两个远程主机的ssh设置。   
 
-##远程端口转发
+## 远程端口转发
 1.服务器端配置 
 远程登陆服务器，打开/etc/ssh/sshd_config文件，增加一行：  
 ``` vi
