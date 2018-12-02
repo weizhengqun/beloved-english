@@ -76,6 +76,20 @@ git 如果使用ssh 协议传输，也可以使用ssh config文件的助记符�
 git clonet tencent:~/work.git
 ```
 
+3.修改sshd的缺省端口号  
+sshd 缺省在22号端口监听，在/etc/ssh/sshd_config文件，找到Port 22那行把22改为期望的端口号。  
+
+4.保持ssh连接  
+sshd在客户端长时间没有活动时会断开连接，在/etc/ssh/sshd_config文件中，增加下面几行，来发送心跳信息，保持连接。
+``` vi
+ClientAliveInterval 45
+ClientAliveCountMax 10
+```
+或者在客户端配置文件～/.ssh/config中增加几行，发送心跳信息，保持连接。
+``` vi
+ServerAliveInterval 45
+ServerAliveCountMax 10
+```
 
 ## 实验
 如果没有现成远程主机，可以参照  https://docs.docker.com/engine/examples/running_ssh_service/ ，生成一个Docker sshd image。生成好image后用这个命令运行：
