@@ -15,8 +15,8 @@ router.get('/api/lessons', async(ctx, next) => {
         });
         let db = connect.db('beloved_english');
         let query = {
-            Level: ctx.query.Level,
-            Lesson: ctx.query.Lesson
+            level: ctx.query.level,
+            lesson: ctx.query.lesson
         };
         console.log(query);
         let records = await db.collection('lessons').findOne(query);
@@ -32,4 +32,4 @@ app
     .use(router.routes())
     .use(router.allowedMethods());
 
-app.listen(3000);
+app.listen(3001);
