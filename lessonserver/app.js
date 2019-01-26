@@ -1,14 +1,18 @@
 const Koa = require('koa');
 const Router = require('koa-router');
 const util = require('util');
+const cors = require('koa2-cors')
 
 const app = new Koa();
 const router = new Router();
 
 const MongoClient = require('mongodb').MongoClient;
-const url = 'mongodb://mongo-server';
+const url = 'mongodb://database-server';
 
-router.get('/api/lessons', async(ctx, next) => {
+app.use(cors({
+    allowMethods: ['GET']
+}));
+router.get('/api/lessons', async (ctx, next) => {
     try {
         let connect = await MongoClient.connect(url, {
             useNewUrlParser: true
@@ -27,7 +31,7 @@ router.get('/api/lessons', async(ctx, next) => {
         console.error(e);
     }
 });
- 
+
 app
     .use(router.routes())
     .use(router.allowedMethods());

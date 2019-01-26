@@ -1,0 +1,28 @@
+version: "3"
+services:
+    resource-server:
+        image:  nginx
+        volumes:
+            - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+            - ./nginx/:/usr/share/nginx
+        ports: 
+            - "6060:80"
+    database-server:
+        image:  mongo
+        volumes:
+            - ./database:/data/db
+        expose: 
+            - "27017"
+    lessons-server:
+        image: node
+        depends_on:
+            - "database-server"
+        links:
+            - "database-server"
+        volumes:
+            - ./lessonserver:/work
+            - ./sh:/sh
+        working_dir:    /work
+        command: ["/sh/wait-for-it.sh", "mongo-server:27017", "--", "/bin/bash", "/sh/start.sh", "app.js"]
+        ports:
+            - "3001:3001"

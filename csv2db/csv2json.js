@@ -74,11 +74,12 @@ let csvFile = {
         if (type === "Array") {
             obj.push(tempObj);
         } else if (type === "Object") {
-            for (let key in tempObj) {
+            /*for (let key in tempObj) {
                 if (tempObj.hasOwnProperty(key) === true) {
                     obj[key] = tempObj[key];
                 }
-            }
+            }*/
+            Object.assign(obj, tempObj);
         }
     },
     async insertObjs(objs) {
